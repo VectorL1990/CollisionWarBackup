@@ -23,7 +23,6 @@ Plugins/**/GeneratedProto
 *.VC.opendb
 *.uasset
 *.umap
-*.uproject
 *.png
 *.mp4
 *.jpg
