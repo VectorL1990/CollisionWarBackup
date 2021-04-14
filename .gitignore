@@ -26,7 +26,6 @@ Plugins/**/GeneratedProto
 *.png
 *.mp4
 *.jpg
-*.rc
 
 # Precompiled Assets
 SourceArt/**/*.png
@@ -64,3 +63,5 @@ DerivedDataCache/*
 Debug/*
 
 Releases/*
+
+Source/CollisionWar/SRC/ThirdParty/SDL/*
