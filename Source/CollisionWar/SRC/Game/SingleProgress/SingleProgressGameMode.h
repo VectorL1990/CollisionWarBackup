@@ -230,11 +230,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "CollisionWar")
 	TArray<uint8> actionTypeList;
 
-	/** ±ê¼Ç½±ÀøµÄÖÖÀà
-	* 0 = ¼¼ÄÜ
-	* 1 = ÔªËØ
-	* 2 = ½ðÇ®
-	* 3 = ÊôÐÔ
+	/** ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	* 0 = ï¿½ï¿½ï¿½ï¿½
+	* 1 = Ôªï¿½ï¿½
+	* 2 = ï¿½ï¿½Ç®
+	* 3 = ï¿½ï¿½ï¿½ï¿½
 	*/
 	UPROPERTY(EditAnywhere, Category = "CollisionWar")
 	TArray<FRangeInt> rewardRangeList;
@@ -248,7 +248,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	uint8 progressNb;
 
-	/** ÓÃÒÔ±êÊ¶Ã¿Ò»¹Ø¶ÔÓ¦²ãµÄÄÑ¶È
+	/** ï¿½ï¿½ï¿½Ô±ï¿½Ê¶Ã¿Ò»ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<int32, int32> difficultyAndEventLayerMap;
@@ -349,7 +349,7 @@ public:
 
 	UCollisionWarSingleton* m_pCWSingleton;
 	/************************************************************************/
-	/* Ò»°ãÐÅÏ¢
+	/* Ò»ï¿½ï¿½ï¿½ï¿½Ï¢
 	/************************************************************************/
 	UFUNCTION(BlueprintNativeEvent, Category = "CollisionWar")
 	void ReadTextureInfo();
@@ -392,14 +392,14 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category = "CollisionWar")
 		void NotifySetSkyColorMatParam(uint8 curProgress, bool dayOrNight, bool battleOrSP);
 	
-	/** ÓÉÓÚ´æÔÚ¶à¸öÓÎÏ·Ä£Ê½£¬ËùÒÔÒª½øÐÐÄ£Ê½Çø·Ö
-	* 0 - ÆÕÍ¨SPÄ£Ê½
+	/** ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½Ï·Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½
+	* 0 - ï¿½ï¿½Í¨SPÄ£Ê½
 	* 1 - DiceBattleÄ£Ê½
-	* 2 - ¼ÇÒäÁ¦Ä£Ê½
-	* 3 - Ëæ»úÄ£Ê½
-	* 4 - ½»Ò×Ä£Ê½
-	* 5 - Õ½¶·Ä£Ê½
-	* 6 - ½âËøÄ£Ê½
+	* 2 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	* 3 - ï¿½ï¿½ï¿½Ä£Ê½
+	* 4 - ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	* 5 - Õ½ï¿½ï¿½Ä£Ê½
+	* 6 - ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 	*/
 	uint8 m_gameState = 0;
 
@@ -498,12 +498,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "CollisionWar")
 	TMap<uint8, UTexture*> m_pActionTypeTextureMap;
 
-	/** Ã¿ÖÖÐÐ¶¯¶¼ÓÐÒ»Ð©ÃèÊöÎÄ×Ö£¬ÀýÈç¼ÇÒäÀàÍæ·¨ÓÐ¡°ÎÒÅ¬Á¦È¥¼ÇÆðÄÇÐ©ÒÑ¾­Ê§È¥µÄ¼ÇÒä£¬ËüÃÇ¾ÍÏñ·çÖÐµÄ·ÉÅî¡±
-	* key ¶ÔÓ¦ÐÐ¶¯ÀàÐÍ
-	* 0 - ÆÕÍ¨Õ½¶·
-	* 1 - ¼ÇÒäÀàÍæ·¨
-	* 2 - ¿¨ÅÆÍæ·¨
-	* 3 - À§ÄÑÕ½¶·
+	/** Ã¿ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ·¨ï¿½Ð¡ï¿½ï¿½ï¿½Å¬ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½Ñ¾ï¿½Ê§È¥ï¿½Ä¼ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ·ï¿½ï¿½î¡±
+	* key ï¿½ï¿½Ó¦ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	* 0 - ï¿½ï¿½Í¨Õ½ï¿½ï¿½
+	* 1 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ·¨
+	* 2 - ï¿½ï¿½ï¿½ï¿½ï¿½æ·¨
+	* 3 - ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½
 	*/
 	UPROPERTY(BlueprintReadWrite, Category = "CollisionWar")
 	TMap<uint8, FChAndEnDescriptionList> m_actionDescription;
@@ -600,7 +600,7 @@ public:
 
 	
 	/************************************************************************/
-	/* Íæ¼ÒÉúÃüÐÅÏ¢
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	/************************************************************************/
 	FOverallIndexSlopeInfo ModifyOverallIndexSlopeByExtraFunction(const FOverallIndexSlopeInfo& slopeIndex);
 
@@ -650,7 +650,7 @@ public:
 	TMap<FString, FEventOverallIndexSlopInfo> m_curEventOverallSlopeIndex;
 
 	/************************************************************************/
-	/* ½ø³ÌÐÅÏ¢
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	/************************************************************************/
 	UFUNCTION()
 	void InitialSingleprogressInfo(uint8 initialType);
@@ -668,7 +668,7 @@ public:
 
 	void UpdateAllCards();
 
-	/** ¸ù¾Ý´óµØÍ¼Ãû³ÆºÍÐÐ¶¯ÀàÐÍ¾ö¶¨½øÈëÄÄÕÅµØÍ¼
+	/** ï¿½ï¿½ï¿½Ý´ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Æºï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½Í¼
 	*/
 	UFUNCTION()
 	void EnterMap();
@@ -695,7 +695,7 @@ public:
 
 	int32 m_curMissionIndexFrameKeyNb = 0;
 	/************************************************************************/
-	/* ¿¨ÅÆºÏ³ÉÊý¾Ý
+	/* ï¿½ï¿½ï¿½ÆºÏ³ï¿½ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 
 	void GenerateJudgeCard(uint8& judgeColor, int32& judgeNb);
@@ -760,7 +760,7 @@ public:
 	UPROPERTY()
 	TMap<int32, UParticleSystemComponent*> m_pCardCombinePSComponents;
 	/************************************************************************/
-	/* ÊÂ¼þ²¿·Ö
+	/* ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 	UFUNCTION(BlueprintNativeEvent, Category = "CollisionWar")
 	void ReadAllEvents();
@@ -788,7 +788,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	FVector m_eventDemoCenterLoc;
 
-	//Ç±·üÊÂ¼þ£¬µ±ÏµÍ³´¥·¢ÊÂ¼þÊ±£¬»á×Ô¶¯¼ì²âÊÇ·ñ´¥·¢ÁËÄ³Ð©Ç±·üÊÂ¼þ
+	//Ç±ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ´¥·ï¿½ï¿½ï¿½Ä³Ð©Ç±ï¿½ï¿½ï¿½Â¼ï¿½
 	UPROPERTY(BlueprintReadWrite, Category = "CollisionWar")
 	TArray<FEventGroupInfo> m_potentialEvents;
 
@@ -815,13 +815,13 @@ public:
 	FRotator m_eventDemoPOVRot;
 
 	/************************************************************************/
-	/* Ëæ»ú¿¨ÅÆÉú³É²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½
 	/************************************************************************/
 
 	TArray<int32> m_leftJudgeCardList;
 
 	/************************************************************************/
-	/* ÖÀ÷»µØÏÂ³ÇÍæ·¨²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â³ï¿½ï¿½æ·¨ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 
 	void InitialDiceBattle();
@@ -851,30 +851,30 @@ public:
 	UFUNCTION()
 	void DiceSkillFlipCardEnd();
 
-	/** DiceBattleÖÐ¸÷ÀàÐÍµ¹¼ÆÊ±µÄÁÐ±í
-	*0 = ´Ó¿ªÊ¼µ½Õ¹Ê¾Start×ÖÑùµÄµ¹¼ÆÊ±
-	*1 = Õ¹Ê¾Startµ½½áÊøÕ¹Ê¾µÄµ¹¼ÆÊ±
-	*2 = Éú³ÉÊý×Ö¿¨ÅÆµÄ×ÜÊ±³¤
-	*3 = Õ¹Ê¾PlayerRound×ÖÑùµÄ×ÜÊ±³¤
-	*4 = µ¥¸öskillPanelÈÈÉíµÄÊ±³¤
-	*5 = µ¥¸öskillPanelÐÐ¶¯µÄ×ÜÊ±³¤
-	*6 = Õ¹Ê¾EnermyRound×ÖÑùµÄ×ÜÊ±³¤
-	*7 = µ¥¸öskillPanelÈÈÉíµÄÊ±³¤
-	*8 = µ¥¸öskillPanelÐÐ¶¯µÄ×ÜÊ±³¤
+	/** DiceBattleï¿½Ð¸ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ð±ï¿½
+	*0 = ï¿½Ó¿ï¿½Ê¼ï¿½ï¿½Õ¹Ê¾Startï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½Ê±
+	*1 = Õ¹Ê¾Startï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹Ê¾ï¿½Äµï¿½ï¿½ï¿½Ê±
+	*2 = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½Æµï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*3 = Õ¹Ê¾PlayerRoundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*4 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*5 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*6 = Õ¹Ê¾EnermyRoundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*7 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*8 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	*/
 	uint8 m_diceBattleStage = 0;
 
-	/** DiceBattleÖÐ¸÷ÀàÐÍµ¹¼ÆÊ±µÄÁÐ±í
-	*0 = ´Ó¿ªÊ¼µ½Õ¹Ê¾Start×ÖÑùµÄµ¹¼ÆÊ±
-	*1 = Õ¹Ê¾Startµ½½áÊøÕ¹Ê¾µÄµ¹¼ÆÊ±
-	*2 = Éú³ÉÊý×Ö¿¨ÅÆµÄ×ÜÊ±³¤
-	*3 = Õ¹Ê¾PlayerRound×ÖÑùµÄ×ÜÊ±³¤
-	*4 = µ¥¸öskillPanelÈÈÉíµÄÊ±³¤
-	*5 = µ¥¸öskillPanelÐÐ¶¯µÄ×ÜÊ±³¤
-	*6 = Õ¹Ê¾EnermyRound×ÖÑùµÄ×ÜÊ±³¤
-	*7 = µ¥¸öskillPanelÈÈÉíµÄÊ±³¤
-	*8 = µ¥¸öskillPanelÐÐ¶¯µÄ×ÜÊ±³¤
-	*9 = Õ¹Ê¾½áÓïµÄ×ÜÊ±³¤
+	/** DiceBattleï¿½Ð¸ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ð±ï¿½
+	*0 = ï¿½Ó¿ï¿½Ê¼ï¿½ï¿½Õ¹Ê¾Startï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½Ê±
+	*1 = Õ¹Ê¾Startï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹Ê¾ï¿½Äµï¿½ï¿½ï¿½Ê±
+	*2 = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½Æµï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*3 = Õ¹Ê¾PlayerRoundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*4 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*5 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*6 = Õ¹Ê¾EnermyRoundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*7 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*8 = ï¿½ï¿½ï¿½ï¿½skillPanelï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	*9 = Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<uint8, float> m_diceIntervalMap;
@@ -956,7 +956,7 @@ public:
 
 	bool m_isInDiceTutorialState = false;
 	/************************************************************************/
-	/* ²ÂÅÆÍæ·¨²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½æ·¨ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 
 	void InitialTheorizePanel();
@@ -1078,7 +1078,7 @@ public:
 
 	bool m_isInTheorizeTutorialState = false;
 	/************************************************************************/
-	/* Ëæ»ú³é¿¨Íæ·¨²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½é¿¨ï¿½æ·¨ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 
 	void UpdateDrawCard(float dT);
@@ -1105,7 +1105,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<uint8, float> m_drawCardTimeIntervalMap;
 	/************************************************************************/
-	/* ÉÌÆÌ²¿·Ö
+	/* ï¿½ï¿½ï¿½Ì²ï¿½ï¿½ï¿½
 	/************************************************************************/
 	void InitialShop();
 
@@ -1124,7 +1124,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	int32 m_maxMoney = 1000;
 	/************************************************************************/
-	/* ½øÈëÕ½¶·²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 	void InitialBattle(const FBattleInfo& battleInfo);
 
@@ -1140,7 +1140,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	int32 m_maxWeaponNb = 5;
 	/************************************************************************/
-	/* Éú³É°µÓ°Á£×ÓÄ£ÐÍ
+	/* ï¿½ï¿½ï¿½É°ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 	/************************************************************************/
 	UFUNCTION(BlueprintNativeEvent, Category = "CollisionWar")
 	void ReadShadowSkeletalMesh();
@@ -1149,11 +1149,11 @@ public:
 
 	void DeleteShadowActor(AShadowActor* pShadowActor);
 
-	/** ´Ëº¯ÊýÎª°´ÏÂÇÐ»»Ä£Ê½¼üÊ±´¥·¢£¬Ö÷Òª¹¦ÄÜÊÇÔÝÍ£Tick£¬Òþ²Ø¿¨ÅÆµÈ
+	/** ï¿½Ëºï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½Ä£Ê½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£Tickï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½Æµï¿½
 	*/
 	void InitialShadowMode();
 
-	/** ´Ëº¯ÊýÊÇµ±¿¨ÅÆÒÑ¾­Òþ²ØÍê±Ï£¬Í¬Ê±ºó´¦Àí¶¯»­ÒÑ¾­Íê±Ïºó£¬Éú³É°µÓ°Ä£ÐÍ
+	/** ï¿½Ëºï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ï¿½É°ï¿½Ó°Ä£ï¿½ï¿½
 	*/
 	UFUNCTION(BlueprintCallable, Category = "CollisionWar")
 	void SpawnAllShadowActors();
@@ -1161,7 +1161,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CollisionWar")
 	void EndShadowMode();
 
-	/** idleState±ê¼Ç³õÊ¼»¯demoCharacterÊ±µÄ¶¯»­×´Ì¬
+	/** idleStateï¿½ï¿½Ç³ï¿½Ê¼ï¿½ï¿½demoCharacterÊ±ï¿½Ä¶ï¿½ï¿½ï¿½×´Ì¬
 	* 0. runeMode
 	* 1. theorize×´Ì¬
 	* 2. diceBattle×´Ì¬
@@ -1203,7 +1203,7 @@ public:
 
 	ADemoCharacter* m_pDemoCharacter;
 	/************************************************************************/
-	/* ×ª³¡¼°½á¾Ö
+	/* ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 	
 	void UpdateCaptureScenes();
@@ -1231,7 +1231,7 @@ public:
 
 	uint8 m_endType = 0;
 	/************************************************************************/
-	/* Òýµ¼²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/************************************************************************/
 	UFUNCTION(BlueprintNativeEvent, Category = "CollisionWar")
 	void ReadTutorialSteps();
@@ -1262,34 +1262,34 @@ public:
 
 	bool m_isInTutorial = false;
 	/************************************************************************/
-	/* ¹Ì¶¨¿¨ÏµÍ³
+	/* ï¿½Ì¶ï¿½ï¿½ï¿½ÏµÍ³
 	/************************************************************************/
 	TArray<FCursedCardInfo> m_curCursedCardInfo;
 
 	/************************************************************************/
-	/* ÌìÆøÏµÍ³
+	/* ï¿½ï¿½ï¿½ï¿½ÏµÍ³
 	/************************************************************************/
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<uint8, int32> m_weatherWeight;
 
 	/************************************************************************/
-	/* Ö÷Á÷³Ì²¿·Ö
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½ï¿½
 	/************************************************************************/
 	AAnimBook* m_pAnimBook;
 
 	UEventNodeManager* m_pEventNodeManager;
 
-	/** ÄÑ¶ÈÓ¦¸ÃËæ×Å¹ØÊýºÍ²ãÊý²»¶Ï±äÄÑ
+	/** ï¿½Ñ¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TArray<FActionLayerInfo> m_actionLayerInfo;
 
 	int32 m_curNodeNb = 0;
 
-	//Ò»¸ö¹Ø¿¨ÓÉ¶à²ã×é³É£¬¶øÃ¿²ãÓÉ¶à¸öÐÐ¶¯µã×é³É
+	//Ò»ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int32 m_curEventNodeNb = 0;
 
-	//ÀýÈçÃ¿6¸öÐÐ¶¯×é³ÉÒ»²ã£¬¶øÃ¿¸ö¹Ø¿¨¿ÉÄÜÓÐ¶à²ã×é³É£¬ËùÒÔ´Ë±äÁ¿ÓÃÓÚ¼ÇÂ¼ÏÖÔÚ´¦ÓÚÄÇÒ»²ã
+	//ï¿½ï¿½ï¿½ï¿½Ã¿6ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ã£¬ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½Ô´Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½Â¼ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 	int32 m_curEventNodeLayerNb = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
@@ -1319,11 +1319,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<uint8, UTexture*> m_eventCardTypeTextureMap;
 
-	/** ±ê¼Ç½±ÀøµÄÖÖÀà
-	* 0 = ¼¼ÄÜ
-	* 1 = ÔªËØ
-	* 2 = ½ðÇ®
-	* 3 = ÊôÐÔ
+	/** ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	* 0 = ï¿½ï¿½ï¿½ï¿½
+	* 1 = Ôªï¿½ï¿½
+	* 2 = ï¿½ï¿½Ç®
+	* 3 = ï¿½ï¿½ï¿½ï¿½
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 		TMap<uint8, UTexture*> m_rewardTypeTextureMap;
@@ -1373,7 +1373,7 @@ public:
 
 	void GenerateRandActionNodeWeb(bool isIncludeBossBattle);
 
-	/** ÕâÊÇÕæÕýÖ´ÐÐÊÂ¼þÅÆ¾ßÌåÐÐ¶¯µÄº¯Êý
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Æ¾ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Äºï¿½ï¿½ï¿½
 	*/
 	void UpdateEventCardAction(bool isChoiceEvent);
 
@@ -1382,10 +1382,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CollisionWar")
 	void AddEventInfo(const FEventCardInfo& eventCardInfo);
 
-	/** updateType±êÊ¶¸üÐÂµÄÖÖÀà
-	* 0. ÆÕÍ¨¸üÐÂ£¬ÐèÒª¸ù¾Ýµ±Ç°µÄ½ÚµãÊýÅÐ¶ÏÖØÐÂÉú³É½ÚµãÐÅÏ¢ºÍÊé±¾Ä£ÐÍ
-	* 1. Õ½¶·½áÊø¸üÐÂ£¬ÐèÒªÖØÐÂÉú³ÉÊé±¾µ«²»ÐèÒªÖØÐÂÉú³É½ÚµãÐÅÏ¢
-	* 2. ÇÐ»»³¡¾°¸üÐÂ£¬ÐèÒªÖØÐÂÉú³ÉÊé±¾ºÍ½ÚµãÐÅÏ¢
+	/** updateTypeï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
+	* 0. ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ýµï¿½Ç°ï¿½Ä½Úµï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½Úµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½é±¾Ä£ï¿½ï¿½
+	* 1. Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é±¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½Úµï¿½ï¿½ï¿½Ï¢
+	* 2. ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é±¾ï¿½Í½Úµï¿½ï¿½ï¿½Ï¢
 	*/
 	void UpdateActionNode(uint8 updateType);
 
@@ -1393,11 +1393,15 @@ public:
 
 	void DecideDayOrNight();
 
-	/** ¼ÆËã½±Àø£¬ÒòÎª²»Í¬µÄÓÎÏ·Ä£Ê½¶ÔÓ¦½±ÀøµÄ¿¨ÅÆ×éÊÇ²»Ò»ÑùµÄ£¬ËùÒÔÒª·Ö¿ª¶Ô´ý
-	* 0. Õ½¶·½±Àø
-	* 1. diceBattle½±Àø
-	* 2. theorize½±Àø
-	*/
+	/** This function responsible for bonus calculation
+	 * type - represent what game it is
+	 * 0. battle
+	 * 1. diceBattle
+	 * 2. theorize
+	 * CalculateBonus should be run before game started, and every bonus type should be in proportion
+	 * for example proportions of attribute,skills,physAttribute should be 40/40/20
+	 * battle can get attribute and skill, dice can get big money, theorize can get physAttribute(or equivalent)
+	 */
 	void CalculateBonus(uint8 type, bool winFlag, TArray<FString>& bonusCards);
 
 	void InterpretBonus();

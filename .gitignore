@@ -26,6 +26,7 @@ Plugins/**/GeneratedProto
 *.png
 *.mp4
 *.jpg
+*.uproject
 
 # Precompiled Assets
 SourceArt/**/*.png
