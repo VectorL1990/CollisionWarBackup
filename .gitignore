@@ -76,5 +76,6 @@ Content/*
 Plugins/KBEginePlugins/Binaries/*
 Plugins/KBEginePlugins/Intermediate/*
 Plugins/KBEginePlugins/Resources/*
+Plugins/KBEginePlugins/Source/KBEnginePlugins/Engine/*
 Plugins/KBEginePlugins/KBEnginePlugins.uplugin
 Plugins/TPRecastNav/*
