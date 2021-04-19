@@ -1369,7 +1369,8 @@ void ASingleProgressGameMode::DecideWeather()
 	UCollisionWarGameInstance* pCWGameInstance = Cast<UCollisionWarGameInstance>(pGameInstance);
 	if (weather == 0)
 	{
-		//说明此时是特定天气，这时要对当前关卡进行判定，如沙漠图则是风沙天气
+		//It means it's special weather now, which depends on which map it is, for example
+		//if player is in desert map, it's sand storm
 		if (pCWGameInstance->m_curPlayerSPInfo.curProgress == 0) weather = 0;
 		else if (pCWGameInstance->m_curPlayerSPInfo.curProgress == 1) weather = 1;
 		else if (pCWGameInstance->m_curPlayerSPInfo.curProgress == 2) weather = 2;
@@ -1386,16 +1387,57 @@ void ASingleProgressGameMode::DecideDayOrNight()
 	else pCWGameInstance->m_dayOrNight = false;
 }
 
-void ASingleProgressGameMode::CalculateBonus(uint8 type, bool winFlag, TArray<FString>& bonusCards)
+void ASingleProgressGameMode::CalculateBonus(int32 totalCardNb, uint8 type, bool winFlag, TArray<FString>& bonusCards)
 {
+	UGameInstance* pGI = UGameplayStatics::GetGameInstance(this);
+	UCollisionWarGameInstance* pCWGI = Cast<UCollisionWarGameInstance>(pGI);
+	TMap<uint8, int32> tempBonusNbs;
+	for (TMap<uint8, float>::TConstIterator iter = m_allBonusTypeProportion; iter; ++iter)
+	{
+		int32 fluctuatedNb = iter->Value / 100.f * m_fluctuatedTotalBonusNb;
+		tempBonusNbs.Add(iter->Key, fluctuatedNb);
+	}
+	TArray<uint8, int32> possibleBonus;
+	for (TMap<uint8, int32>::TConstIterator iter = pCWGI->m_curPlayerSPInfo.bonusAmount.CreateConstIterator(); iter; ++iter)
+	{
+		possibleBonus.Add(iter->Key, 0);
+		if (!tempBonusNbs.Contains(iter->Key)) continue;
+		//The actual available bonus nb should be equal to fluctuatedMaxNb minus bonus nb already given to player
+		possibleBonus[iter->Key] = tempBonusNbs[iter->Key] - iter->Value;
+	}
 	//type represents what bonus is
 	// type == 0 attribute, type == 1 skill, type == 2 capacity like hp atk dfc
 	if (type == 0)
 	{
-
-	}
-	else if (type == 1)
-	{
+		for (int32 i = 0; i < totalCardNb; i++)
+		{
+			//if player get reward from battle, bonus maybe skills or attributes, 
+			if (possibleBonus[0] > 0 && possibleBonus[1] > 0)
+			{
+				int32 randBonus = FMath::RandRange(0, 1);
+				if (randBonus == 0)
+				{
+					//which means bonus is skill
+					
+				}
+				else
+				{
+					//which means bonus is attribute
+				}
+			}
+			else if (possibleBonus[0] > 0)
+			{
+				//which means bonus is skill
+			}
+			else if (possibleBonus[1] > 0)
+			{
+				//which means bonus is attribute
+			}
+			else
+			{
+				//which means nothing can be given to player, this is a bug
+			}
+		}
 		UGameInstance* pGI = UGameplayStatics::GetGameInstance(this);
 		UCollisionWarGameInstance* pCWGI = Cast<UCollisionWarGameInstance>(pGI);
 		TArray<FString> availableSkills;
@@ -1413,6 +1455,10 @@ void ASingleProgressGameMode::CalculateBonus(uint8 type, bool winFlag, TArray<FS
 			skillChoices.Add(availableSkills[randNb]);
 			availableSkills.RemoveAt(randNb);
 		}
+	}
+	else if (type == 1)
+	{
+		
 	}
 }
 
@@ -1863,9 +1909,13 @@ void ASingleProgressGameMode::UpdateDiceLogic(float dT)
 		{
 			TArray<FString> bonusCards;
 			if (m_diceBattleStage == 10)
-				CalculateBonus(1, true, bonusCards, );
+			{
+				//win dice, bonus should be given to player
+			}
 			else
-				CalculateBonus(1, false, bonusCards);
+			{
+				//lose dice, nothing should be given
+			}
 			m_pSPPC->LoadExtraBounusCard(bonusCards, 1);
 			m_curDiceCount = 0;
 			m_diceBattleStage = 12;
@@ -2668,9 +2718,13 @@ void ASingleProgressGameMode::UpdateTheorize(float dT)
 		{
 			TArray<FString> bonusCards;
 			if (m_theorizeState == 11)
-				CalculateBonus(2, true, bonusCards);
+			{
+				//win theorize, bonus should be given to player
+			}
 			else
-				CalculateBonus(2, false, bonusCards);
+			{
+				//lose theorize, nothing is given to player
+			}
 			m_pSPPC->LoadExtraBounusCard(bonusCards, 2);
 			m_curTheorizeTimeCount = 0;
 			m_theorizeState = 13;
