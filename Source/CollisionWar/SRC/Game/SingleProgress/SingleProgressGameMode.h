@@ -1393,11 +1393,15 @@ public:
 
 	void DecideDayOrNight();
 
-	/** 计算奖励，因为不同的游戏模式对应奖励的卡牌组是不一样的，所以要分开对待
-	* 0. 战斗奖励
-	* 1. diceBattle奖励
-	* 2. theorize奖励
-	*/
+	/** This function responsible for bonus calculation
+	 * type - represent what game it is
+	 * 0. battle
+	 * 1. diceBattle
+	 * 2. theorize
+	 * CalculateBonus should be run before game started, and every bonus type should be in proportion
+	 * for example proportions of attribute,skills,physAttribute should be 40/40/20
+	 * battle can get attribute and skill, dice can get big money, theorize can get physAttribute(or equivalent)
+	 */
 	void CalculateBonus(uint8 type, bool winFlag, TArray<FString>& bonusCards);
 
 	void InterpretBonus();
