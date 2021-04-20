@@ -833,6 +833,7 @@ void AKing::NotifyEndSkill()
 
 void AKing::ImplementSkill_Int(int32 campFlag)
 {
+	if (m_energyBallList <= 0) return;
 	APlayerController* pPC = UGameplayStatics::GetPlayerController(this, 0);
 	ABattleLevelPlayerController* pBattlePC = Cast<ABattleLevelPlayerController>(pPC);
 	//更新装备号curEquipNb
@@ -859,6 +860,7 @@ void AKing::ImplementSkill_Int(int32 campFlag)
 		pSkill = pEquipInfo->m_pSkills[m_curSkillNb];
 		if (!pSkill) return;
 		pSkill->m_campFlag = campFlag;
+		ConsumeEnergyBall();
 	}
 	else if (m_implementSkillType == 1)
 	{
@@ -866,9 +868,15 @@ void AKing::ImplementSkill_Int(int32 campFlag)
 		ConsumeEnergyBall();
 	}
 	else if (m_implementSkillType == 3)
+	{
 		pSkill = m_pAbsortSkill;
+		ConsumeEnergyBall();
+	}
 	else
+	{
 		pSkill = m_pCounterStrikeSkill;
+		ConsumeEnergyBall();
+	}
 	m_pBaseAnimInstance->m_motionStateString = pSkill->m_skillMotionTypeString;
 	m_pBaseAnimInstance->NotifyImplementSkill(pSkill->m_skillAnimName);
 	//更新技能信息
