@@ -1403,10 +1403,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CollisionWar")
 	void AddEventInfo(const FEventCardInfo& eventCardInfo);
 
-	/** updateType标识更新的种类
-	* 0. 普通更新，需要根据当前的节点数判断重新生成节点信息和书本模型
-	* 1. 战斗结束更新，需要重新生成书本但不需要重新生成节点信息
-	* 2. 切换场景更新，需要重新生成书本和节点信息
+	/** updateType represents which type of update it is
+	* 0. Normal update, such as update after actions of dice or theorize
+	* 1. Battle update, all data like messages inside CWGI should be reloaded
+	* 2. New map update, such as player transfer from snow map to desert map
 	*/
 	void UpdateActionNode(uint8 updateType);
 

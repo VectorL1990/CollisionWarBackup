@@ -918,7 +918,7 @@ void ASingleProgressGameMode::InitialSingleprogressInfo(uint8 initialType)
 			m_pSPPC->LoadGame(pCWGI->m_curPlayerSPInfo.progressName, 0, 0);
 			m_pSPPC->m_pSPMenu->UpdateSPProgressImage(m_curEventNodeNb, m_curEventNodeLayerNb);
 		}
-		//Shadow actors should be spawned here
+		//event cards should be spawned here
 		FVector firstSALoc = m_SAOriginalLoc - ((float)m_actionNodeList[m_curNodeNb].actionNodeBriefInfoList.Num() - 1.f) * 0.5f * FVector(m_SADemoOffset, 0, 0);
 		for (int32 i=0; i<m_actionNodeList[m_curNodeNb].actionNodeBriefInfoList.Num(); i++)
 		{
@@ -951,6 +951,7 @@ void ASingleProgressGameMode::InitialSingleprogressInfo(uint8 initialType)
 				pEventCard->StartWarpIn();
 			}
 		}
+		//Bonus should be calculate here
 		NotifyLoadCalenderMenu();
 	}
 	//这里要填充SPMenu界面的那些技能按钮
@@ -1406,58 +1407,109 @@ void ASingleProgressGameMode::CalculateBonus(int32 totalCardNb, uint8 type, bool
 		possibleBonus[iter->Key] = tempBonusNbs[iter->Key] - iter->Value;
 	}
 	//type represents what bonus is
-	// type == 0 attribute, type == 1 skill, type == 2 capacity like hp atk dfc
+	// type == 0 battle, type == 1 dice, type == 2 theorize
 	if (type == 0)
 	{
+		// This variable is used to tell whether skill bonus is given to player
+		// If skill is given to player, next bonus should be attribute
+		bool isSkillGiven = false;
 		for (int32 i = 0; i < totalCardNb; i++)
 		{
-			//if player get reward from battle, bonus maybe skills or attributes, 
-			if (possibleBonus[0] > 0 && possibleBonus[1] > 0)
+			if (possibleBonus[0] > 0)
 			{
+				//which means player can get new skill as bonus, but we should still use rand function to decide whether skill is given
 				int32 randBonus = FMath::RandRange(0, 1);
 				if (randBonus == 0)
 				{
-					//which means bonus is skill
-					
+					isSkillGiven = true;
+					//we should take skills that are not occupied by player to be optional bonus
+					TArray<FString> availableSkills;
+					for (int32 i=0; i< m_pSPPC->m_playerSkillInfos.Num(); i++)
+					{
+						if (pCWGI->m_curPlayerSPInfo.availableExtraSkillList.Contains(m_pSPPC->m_playerSkillInfos[i]))
+							continue;
+						availableSkills.Add(m_pSPPC->m_playerSkillInfos[i].skillName);
+					}
+					TArray<FString> skillChoices;
+					for (int32 i=0; i<m_maxBonusChoiseCardNb; i++)
+					{
+						if (availableSkills.Num() <= 0) break;
+						int32 randNb = FMath::RandRange(0, availableSkills.Num() - 1);
+						skillChoices.Add(availableSkills[randNb]);
+						availableSkills.RemoveAt(randNb);
+					}
 				}
 				else
 				{
-					//which means bonus is attribute
+					//attribute bonus should be random given to player
+					// 0 - fire
+					// 1 - water
+					// 2 - freeze
+					// 3 - 
+					int32 attributeNb = FMath::RandRange(0, 6);
+					FString bonusCardName = "Attribute_" + FString::FromInt(attributeNb);
+					bonusCards.Add(bonusCardName);
 				}
-			}
-			else if (possibleBonus[0] > 0)
-			{
-				//which means bonus is skill
-			}
-			else if (possibleBonus[1] > 0)
-			{
-				//which means bonus is attribute
 			}
 			else
 			{
-				//which means nothing can be given to player, this is a bug
+				// If skills are not allowed to be given to player, attributes should be given
+				// 0 - fire
+				// 1 - water
+				// 2 - freeze
+				// 3 - 
+				int32 attributeNb = FMath::RandRange(0, 6);
+				FString bonusCardName = "Attribute_" + FString::FromInt(attributeNb);
+				bonusCards.Add(bonusCardName);
 			}
-		}
-		UGameInstance* pGI = UGameplayStatics::GetGameInstance(this);
-		UCollisionWarGameInstance* pCWGI = Cast<UCollisionWarGameInstance>(pGI);
-		TArray<FString> availableSkills;
-		for (int32 i=0; i< m_pSPPC->m_playerSkillInfos.Num(); i++)
-		{
-			if (pCWGI->m_curPlayerSPInfo.availableExtraSkillList.Contains(m_pSPPC->m_playerSkillInfos[i]))
-				continue;
-			availableSkills.Add(m_pSPPC->m_playerSkillInfos[i].skillName);
-		}
-		TArray<FString> skillChoices;
-		for (int32 i=0; i<m_maxBonusChoiseCardNb; i++)
-		{
-			if (availableSkills.Num() <= 0) break;
-			int32 randNb = FMath::RandRange(0, availableSkills.Num() - 1);
-			skillChoices.Add(availableSkills[randNb]);
-			availableSkills.RemoveAt(randNb);
 		}
 	}
 	else if (type == 1)
 	{
+		// If player win dice game, player can get money
+		bonusCards.Add("Money");
+	}
+	else if (type == 2)
+	{
+		// Number of relics is limit
+		bool isRelicsGiven = false;
+		for (int32 i = 0; i < totalCardNb; i++)
+		{
+			int32 randBonus = FMath::RandRange(0, 1);
+			if (possibleBonus[3] > 0)
+			{
+				if (randBonus == 0)
+				{
+					isRelicsGiven = true;
+					//We should search all available relics
+				}
+				else
+				{
+					// PhysAttribute could be Hp or Atk, which should be given randomly
+					int32 randPhysBonus = FMath::RandRange(0, 1);
+					if (randPhysBonus == 0)
+					{
+
+					}
+					else
+					{
+
+					}
+				}
+			}
+			else
+			{
+				int32 randPhysBonus = FMath::RandRange(0, 1);
+				if (randPhysBonus == 0)
+				{
+
+				}
+				else
+				{
+
+				}
+			}
+		}
 		
 	}
 }
