@@ -4759,6 +4759,7 @@ struct FPlayerSingleProgressInfo
 	 * 1 - attribute
 	 * 2 - physAttribute
 	 * 3 - Money
+	 * 4 - relics
 	 */
 	TMap<uint8, int32> bonusAmount;
 

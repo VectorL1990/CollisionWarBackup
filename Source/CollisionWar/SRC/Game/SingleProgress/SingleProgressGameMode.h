@@ -1319,19 +1319,40 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<uint8, UTexture*> m_eventCardTypeTextureMap;
 
-	/** 标记奖励的种类
-	* 0 = 技能
-	* 1 = 元素
-	* 2 = 金钱
-	* 3 = 属性
-	*/
+	/** Textures of different bonus types
+	 * 0 = skill
+	 * 1 = attribute
+	 * 2 = money
+	 * 3 = physAttribute
+	 * 4 = relics
+	 */
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 		TMap<uint8, UTexture*> m_rewardTypeTextureMap;
 
-	UPROPERTY(BlueprintReadWrite, Category = "CollisionWar")
-	TMap<FString, FSkillUnlockInfo> m_allSkillUnlockInfo;
+	/** Bonus proportion of all types
+	 * 0 - skill
+	 * 1 = attribute
+	 * 2 = money
+	 * 3 = physAttribute
+	 * 4 = relics
+	 * Maybe it's better to calculate number of different kinds of bonus by proportion instead of giving an exact number
+	 * because we want to keep all bonus in proportion but also make it look ramdom
+	 * however, problem is that total amount of bonus may be changed from time to time, so we can setup
+	 * a number X which is a little bit larger than original plan, mutiply X by this proportion so that we can get all
+	 * bonus number fluctuated 1 or 2.
+	 */
+	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
+	TMap<uint8, float> m_allBonusTypeProportion;
 
-	TMap<FString, int32> m_allSkillUnlockPointMap;
+	/** Total bonus nb which is a little bit larger than original total nb.
+	 * Maybe it's better to calculate number of different kinds of bonus by proportion instead of giving an exact number
+	 * because we want to keep all bonus in proportion but also make it look ramdom
+	 * however, problem is that total amount of bonus may be changed from time to time, so we can setup
+	 * a number X which is a little bit larger than original plan, mutiply X by this proportion so that we can get all
+	 * bonus number fluctuated 1 or 2.
+	 */
+	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
+	int32 m_fluctuatedTotalBonusNb;
 
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<int32, int32> m_skillSlotNbMap;
@@ -1373,8 +1394,8 @@ public:
 
 	void GenerateRandActionNodeWeb(bool isIncludeBossBattle);
 
-	/** 这是真正执行事件牌具体行动的函数
-	*/
+	/** This is where truely execute action card's action
+	 */
 	void UpdateEventCardAction(bool isChoiceEvent);
 
 	void TriggerChoiceEvent(FEventFunction fun);
@@ -1382,10 +1403,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CollisionWar")
 	void AddEventInfo(const FEventCardInfo& eventCardInfo);
 
-	/** updateType标识更新的种类
-	* 0. 普通更新，需要根据当前的节点数判断重新生成节点信息和书本模型
-	* 1. 战斗结束更新，需要重新生成书本但不需要重新生成节点信息
-	* 2. 切换场景更新，需要重新生成书本和节点信息
+	/** updateType represents which type of update it is
+	* 0. Normal update, such as update after actions of dice or theorize
+	* 1. Battle update, all data like messages inside CWGI should be reloaded
+	* 2. New map update, such as player transfer from snow map to desert map
 	*/
 	void UpdateActionNode(uint8 updateType);
 
@@ -1395,14 +1416,14 @@ public:
 
 	/** This function responsible for bonus calculation
 	 * type - represent what game it is
-	 * 0. battle
-	 * 1. diceBattle
-	 * 2. theorize
+	 * 0. battle - skill or attribute
+	 * 1. diceBattle - money
+	 * 2. theorize - physattribute or relics
 	 * CalculateBonus should be run before game started, and every bonus type should be in proportion
 	 * for example proportions of attribute,skills,physAttribute should be 40/40/20
 	 * battle can get attribute and skill, dice can get big money, theorize can get physAttribute(or equivalent)
 	 */
-	void CalculateBonus(uint8 type, bool winFlag, TArray<FString>& bonusCards);
+	void CalculateBonus(int32 totalCardNb, uint8 type, bool winFlag, TArray<FString>& bonusCards);
 
 	void InterpretBonus();
 

@@ -180,7 +180,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	float m_enermyHpRollRate = 1.025;
 	/************************************************************************/
-	/* “Ï≤Ωº”‘ÿ
+	/* Asyncload
 	/************************************************************************/
 	
 	void ReqAsynLoad(int32 infoNb);

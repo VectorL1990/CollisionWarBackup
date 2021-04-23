@@ -285,12 +285,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = "CollisionWar")
 	int32 m_chopSkillMutationType = -1;
 
-	/** 天气状况分4种
-	* 0 - 下雨
-	* 1 - 特定
-	* 2 - 风
-	* 3 - 魔幻
-	*/
+	/** Weather conditions
+	 * 0 - rain
+	 * 1 - special
+	 * 2 - Wind
+	 * 3 - Magic
+	 */
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	uint8 m_weatherType;
 
@@ -300,7 +300,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CollisionWar")
 	TMap<int32, int32> m_skillCapcity;
 	/************************************************************************/
-	/* 单人进程变量
+	/* SingleProgress Variables
 	/************************************************************************/
 	UPROPERTY(EditAnywhere, Category = "CollisionWar")
 	TArray<FPlayerSingleProgressInfo> m_playerSingleProgressInfos;
