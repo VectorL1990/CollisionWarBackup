@@ -1398,7 +1398,7 @@ void ASingleProgressGameMode::CalculateBonus(int32 totalCardNb, uint8 type, bool
 		int32 fluctuatedNb = iter->Value / 100.f * m_fluctuatedTotalBonusNb;
 		tempBonusNbs.Add(iter->Key, fluctuatedNb);
 	}
-	TArray<uint8, int32> possibleBonus;
+	TMap<uint8, int32> possibleBonus;
 	for (TMap<uint8, int32>::TConstIterator iter = pCWGI->m_curPlayerSPInfo.bonusAmount.CreateConstIterator(); iter; ++iter)
 	{
 		possibleBonus.Add(iter->Key, 0);
@@ -1426,7 +1426,7 @@ void ASingleProgressGameMode::CalculateBonus(int32 totalCardNb, uint8 type, bool
 					TArray<FString> availableSkills;
 					for (int32 i=0; i< m_pSPPC->m_playerSkillInfos.Num(); i++)
 					{
-						if (pCWGI->m_curPlayerSPInfo.availableExtraSkillList.Contains(m_pSPPC->m_playerSkillInfos[i]))
+						if (pCWGI->m_curPlayerSPInfo.availableExtraSkillList.Contains(m_pSPPC->m_playerSkillInfos[i].skillName))
 							continue;
 						availableSkills.Add(m_pSPPC->m_playerSkillInfos[i].skillName);
 					}

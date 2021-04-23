@@ -188,6 +188,8 @@ void UTActionCard::ClickButton(FString buttonFunction)
 		ASingleProgressPlayerController* pSPPC = Cast<ASingleProgressPlayerController>(pPC);
 		pSPPC->m_pCardSelectMenu->m_allBonusCardNames.Add(m_cardName);
 
+		AGameModeBase* pGM = UGameplayStatics::GetGameMode(this);
+		ASingleProgressGameMode* pSPGM = Cast<ASingleProgressGameMode>(pGM);
 		if (pSPGM->m_gameState == 0)
 		{
 			pSPPC->m_pCardSelectMenu->FadeOut();
